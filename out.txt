@@ -1,0 +1,7 @@
+a.out
+input
+major2.c
+makefile
+out.txt
+README
+test

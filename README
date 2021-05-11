@@ -1,0 +1,33 @@
+Names: Bryan Morris, Peyton Thibodeaux, Jeffrey Okhuozagbon, and Christopher Chiechi
+
+Components
+    built-in cd command: created by Peyton Thibodeaux
+    built-in exit command: created by Christopher Chiechi
+    built-in path command: created by Bryan Morris
+    built-in history command: created by Jeffrey Okhuozagbon
+    General design of communal code: Bryan Morris, Peyton Thibodeaux
+    I/O redirection: Peyton Thibodeaux
+    pipelining: Christopher Chiechi (work in progress)
+    signal handling: Bryan Morris
+    alia command: Jeffrey Okhuozagbon (work in progress)
+
+Design Overview: 
+    General flowpath: 
+        1. Main reads things in to the parser, line by line 
+        2. the line parser function delimits functions/arguments based on newlines and semicolons and sends those functions to be ran (in RunFunctions()) 
+        3. RunFunctions formats the command/arguments to be used in an exec function call. Each command is ran in the order given, sequentially.
+    Important structures:
+        1. pathvar holds current path at all times
+        2. homedir variable getsthe user's home directory which is useful for certain commands
+        3. inputArgs charecter array array (or string array) is important for all commands, it holds command name and any following arguments 
+
+
+Complete Specification: 
+    Whenever any incorrect or empty command is inputted, a error message displays command not found, and prints the command name if applicable
+    we included lots of error checking in this code to avoid seg faults and misuse of system resources, some of this involves not running system calls unless needed
+    We kept our code inside oen c file since all teh code is so interconnected, although this does retract from readability a little
+    
+Known Bugs or Problems: 
+    when getting input argumenmts from a file certain arguments (especially those starting with -) will fail with a command not found error
+    pipelining is not implemented
+    alias command is not implemented 
